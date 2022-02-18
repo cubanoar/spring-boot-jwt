@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.cubanoar.springboot.app.auth.filter.JWTAuthenticationFilter;
 import com.cubanoar.springboot.app.models.service.JpaUserDetailsService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)//Habilitando las anotaciones de seguridad de los controladores
@@ -26,6 +27,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/","/css/**","/js/**","/images/**","/listar**").permitAll()
 		.anyRequest().authenticated()
 		.and()
+		.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 		.csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
