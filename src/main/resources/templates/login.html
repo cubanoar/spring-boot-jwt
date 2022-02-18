@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<div class="py-4 row">
+
+			<div class="col-4"></div>
+			<div class="card border-primary col-4">
+				<div class="card-header text-center" th:text="'Inicia sesión'"></div>
+				<div class="card-body">
+				<!--Spring Security agrega en todos los form el token csrf  -->
+					<form th:action="@{/login}" method="post">
+						<div class="mb-3">
+							<label for="username" class="form-label" th:text="'Username'"></label>
+							<input type="text" class="form-control" id="username"
+								name="username" placeholder="Username" autofocus required />
+
+						</div>
+						<div class="mb-3">
+							<label for="password" class="form-label">Password</label> 
+							<input type="password" class="form-control" name="password" id="password"
+								placeholder="Password" required />
+						</div>
+						<div class="form-text text-center">No compartas tus datos
+							con nadie</div>
+						<div class="m-2 text-center">
+							<button type="submit" class="btn btn-primary">Iniciar
+								sesión</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+			<div class="col-4"></div>
+		</div>
+
+		<footer th:replace="layout/layout :: footer"></footer>
+	</div>
+</body>
+</html>
